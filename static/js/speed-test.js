@@ -11,7 +11,7 @@ function sendSpeedToServer(speed) {
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data);
-        // You can do something here after the speed has been sent to the server
+
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -51,7 +51,7 @@ function calculateSpeed(duration, fileSize) {
 }
 
 document.getElementById('startTestBtn').addEventListener('click', function() {
-    // Inform the user that the test will start shortly
+
     document.getElementById('result').textContent = "Calculating speed...";
 
     // Delay the speed test by 5 seconds
@@ -66,5 +66,5 @@ document.getElementById('startTestBtn').addEventListener('click', function() {
                 document.getElementById('result').textContent = "Error performing test";
             }
         });
-    }, 8000); // 5000 milliseconds = 5 seconds
+    }, 8000); // Delays by 8 seconds
 });

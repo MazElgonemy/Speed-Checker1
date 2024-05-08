@@ -8,7 +8,7 @@ const target2 = document.getElementById('typed-text-2');
 const message2 = 'We are here to help to you track your internet speeds.';
 let index2 = 0;
 
-// Reference to the button
+
 const button = document.querySelector('.btn.btn-primary');
 
 // Function to type out the first message

@@ -6,10 +6,10 @@ window.addEventListener("scroll", function(){
    var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
    if (currentScroll > lastScrollTop){
       // scroll down
-      document.querySelector('.navbar').style.top='-60px'; // adjust '-60px' to the height of your navbar
+      document.querySelector('.navbar').style.top='-60px'; //
    } else {
       // scroll up
       document.querySelector('.navbar').style.top='0px';
    }
-   lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
+   lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile scrolling
 }, false);
