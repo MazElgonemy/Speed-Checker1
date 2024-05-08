@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SpeedChecker</title>
+    {{ bootstrap.load_css() }}
+    {% include "navbar.html" %}
+    <link href="static/css/data.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="data-container">
+        <div class="main-box">
+            <h1>View your <span class="highlight">historic internet speeds</span></h1>
+            <div class="container" id="container1">
+                <p>{{ message }}</p>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Download Speed (Mbps)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for speed in speeds %}
+                                <tr>
+                                    <td>{{ speed.date.strftime('%Y-%m-%d') }}</td>
+                                    <td>{{ speed.speed }} Mbps</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <a href="{{ url_for('visualise') }}" class="btn btn-primary btn-block">Visualise Data</a>
+                <a href="{{ url_for('analyse') }}" class="btn btn-primary btn-block">Analyse Data</a>
+            </div>
+        </div>
+    </div>
+    {% include "base-scripts.html" %}
+</body>
+</html>

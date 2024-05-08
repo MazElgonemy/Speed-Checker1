@@ -1,0 +1,96 @@
+/* Navbar Styles */
+.navbar {
+  position: fixed; /* or relative/absolute depending on your design */
+  top: 0;
+  width: 100%; /* Ensure it spans the full width */
+  transition: top 0.3s; /* Smooth transition for moving up and down */
+  flex-shrink: 0;
+  background-color: #f6f2e6; /* Light background to match the site's theme */
+  border-bottom: 2px solid #a3bdd0; /* A subtle border for a bit of contrast */
+  padding: 10px 20px; /* Adjusted padding for a sleek look */
+  /* No need to set position here unless you're trying to override Bootstrap's default styling */
+  z-index: 9999; /* Increase if necessary */
+}
+
+.navbar-brand {
+  font-family: 'Raleway', sans-serif; /* Consistent font usage */
+  font-size: 30px; /* Size that stands out */
+  color: #003766; /* Dark color for contrast */
+  transition: color 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+.navbar-brand:hover, .navbar-brand:focus {
+  color: #a3bdd0; /* Lighter shade for hover effect */
+}
+
+.nav-item {
+  margin-left: 20px; /* Space between menu items */
+}
+
+.nav-link {
+  font-family: 'Raleway', sans-serif; /* Consistent font usage */
+  font-size: 20px; /* Readable but not too large */
+  color: #003766; /* Matching the navbar-brand color for consistency */
+  transition: color 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+.nav-link:hover, .nav-link:focus {
+  color: #a3bdd0; /* Lighter shade for hover effect, matching navbar-brand */
+}
+
+/* Responsive Toggle Button */
+
+
+.navbar-collapse {
+  flex-grow: 1;
+  flex-basis: auto;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23003766' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  /* Custom SVG for the toggle icon, using the dark blue color */
+}
+
+
+/* Adjustments for smaller screens */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+
+  .navbar-collapse {
+    /* Apply absolute positioning only on small screens */
+     display: block;
+    position: absolute;
+    top: 100%; /* Right below the navbar */
+    right: 0; /* Align to the far right */
+    background-color: white; /* Or any color you wish */
+    border: 1px solid #ccc; /* Optional border */
+    border-radius: 0.25rem; /* Optional rounded corners */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Optional shadow for pop-out effect */
+    z-index: 1000; /* Ensure it sits above other content */
+    text-align: left;
+  }
+
+  .navbar-toggler {
+    display: block;
+    position: absolute;
+    right: 1rem; /* Adjust to your visual preference */
+    top: 1rem; /* Adjust to your visual preference */
+  }
+
+ .nav-link {
+    /* Reset padding to align text within dropdown */
+    padding: 0.5rem 1rem; /* Bootstrap's default padding for dropdown items */
+    text-align: left; /* Align text to the left for each link */
+    width: 100%; /* Ensure the link uses the full width */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+  }
+
+  .navbar-nav {
+    margin-top: 15px; /* Additional space on top for the collapsed menu */
+  }
+
+  .nav-item {
+      margin: 0;
+    width: 100%; /* Full width to align with the dropdown */
+  }
+}

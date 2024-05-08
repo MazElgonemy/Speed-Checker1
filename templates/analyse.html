@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SpeedChecker</title>
+    {{ bootstrap.load_css() }}
+        {% include "navbar.html" %}
+        <link href="static/css/analyse.css" rel="stylesheet" />
+</head>
+
+
+<body>
+
+<div class="data-container">
+    <div class="main-box">
+            <h1><span class="highlight"> Analyse </span> your data </h1>
+        <table class="container" id="container1">
+            <tr>
+                <td><h2> Average Speed</h2></td>
+                <td><h2><span class="highlight-blue">{{ average_speed }}</span></h2></td>
+            </tr>
+            <tr>
+                <td><h2> Max Speed</h2></td>
+                <td><h2><span class="highlight-blue">{{ max_speed }}</span> </h2></td>
+            </tr>
+            <tr>
+                <td><h2> Min Speed</h2></td>
+                <td><h2><span class="highlight-blue">{{ min_speed }}</span> </h2></td>
+            </tr>
+            <tr>
+                <td><h2> Standard Deviation</h2></td>
+                <td><h2> <span class="highlight-blue">{{ std }}</span></h2></td>
+            </tr>
+           <tr>
+                 <td colspan="2" class="bottom-row"><a href="{{ url_for('analyse_ai') }}" class="btn btn-primary btn-block">AI-Powered summary</a></td>
+            </tr>
+            <tr>
+                 <td colspan="2" class="bottom-row"><a href="{{ url_for('data') }}" class="btn btn-primary btn-block">Back to Data</a></td>
+            </tr>
+        </table>
+    </div>
+
+
+</div>
+</body>
+
+    {% include "base-scripts.html"%}
+
+</html>

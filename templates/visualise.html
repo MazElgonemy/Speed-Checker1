@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SpeedChecker</title>
+  {{ bootstrap.load_css() }}
+        {% include "navbar.html" %}
+        <link href="static/css/visualise.css" rel="stylesheet" />
+</head>
+
+
+<body>
+
+<div class="data-container">
+    <div class="main-box">
+                 <h1>View your <span class="highlight"> historic internet speeds </span> </h1>
+        <div class="container" id="container1">
+            {% if message == "": %}
+                <img src="/static/images/chart.png" alt="Internet Download Speed Chart">
+            {% else : %}
+            <p> {{ message }} </p>
+            {% endif %}
+
+            <a href="{{url_for('data') }}" class="btn btn-primary btn-block">See Table</a>
+            <a href="{{url_for('analyse') }}" class="btn btn-primary btn-block">Analyse Data</a>
+        </div>
+    </div>
+    <h1></h1>
+
+</div>
+
+
+
+</body>
+
+    {% include "base-scripts.html"%}
+
+</html>

@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Raleway", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url('../images/background.jpg');
+    background-repeat: repeat;
+    background-size: contain;
+    background-position: 0% 100%;
+}
+
+.highlight {
+    color: #5f9ac6;
+    font-weight: bold;
+}
+
+.data-container {
+    width: 100%;
+    max-width: 2000px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 1000px;
+}
+
+.main-box {
+    background-color: #f6f2e6;
+    padding: 40px;
+    border: 1px solid #ccc;
+    margin: 0 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    min-width: 500px;
+    width: 60%;
+    height: 60%;
+    display: flex;
+    flex-direction: column; /* Use flex-direction to stack vertically */
+    justify-content: flex-start; /* Start at the top of the container */
+    align-items: stretch; /* Ensure children take up full width */
+}
+
+.container {
+    background-color: #f6f2e6;
+    min-width: 80%;
+    max-width: 100%; /* Ensure container does not exceed parent width */
+    max-height: 100%; /* Ensure container does not exceed parent height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid #5f9ac6;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 36px;
+    text-align: center;
+    font-size: 18px;
+    overflow: auto; /* Add scrollbars if content overflows */
+    flex-shrink: 1; /* Allow shrinking if needed */
+}
+
+.btn.btn-primary {
+    font-size: 20px;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #5f9ac6;
+    color: #f6f2e6;
+    border-radius: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn.btn-primary:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.data-container .main-box h1 {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size:30px;
+}
+
+@media (max-width: 600px) {
+    body .data-container h1 {
+       font-size: 25px;
+    }
+}

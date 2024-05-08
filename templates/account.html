@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SpeedChecker</title>
+  {{ bootstrap.load_css() }}
+        {% include "navbar.html" %}
+        <link href="static/css/account.css" rel="stylesheet" />
+</head>
+
+
+<body>
+
+
+<div class="data-container">
+    <div class="main-box">
+        <h1> <span class="highlight">Account Manager</span> </h1>
+        <div class="container" id="container1">
+            <div class="quarter" id="q1"> <a href="{{url_for('change_password') }}" class="btn btn-primary btn-block">Change your password</a></div>
+            <div class="quarter" id="q2"><a href="{{url_for('logout') }}" class="btn btn-primary btn-block">Sign Out</a></div>
+            <div class="quarter" id="q3">
+<!--                <form action="{{ url_for('delete_account') }}" method="post">-->
+<!--                    <button type="submit" class="btn btn-primary btn-danger btn-block">Delete Account</button>-->
+<!--                </form>-->
+                <button onclick="confirmDelete()" class="btn btn-primary btn-danger btn-block" >Delete My Account</button>
+            </div>
+        </div>
+    </div>
+    <h1></h1>
+</div>
+
+
+
+</body>
+
+    {% include "base-scripts.html"%}
+
+</html>

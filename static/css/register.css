@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+    padding: 0; /* Reset any default padding */
+    font-family: "Raleway", sans-serif;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    min-height: 100vh; /* Full viewport height */
+    background-image: url('../images/background.jpg');
+    background-repeat: repeat;
+    background-size: contain;
+    background-position: 0% 100%;
+
+    h1 {
+    font-size:30px;
+    margin-bottom:40px;
+    }
+
+    .highlight {
+        color:#5f9ac6;
+        font-weight: bold;
+    }
+}
+ body h3 {
+    color:green;
+    margin-bottom:30px;
+ }
+.register-container {
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+    width: 100%; /* Full width to center the box */
+
+    p {
+    color:red;
+    }
+
+}
+
+.form-box {
+    background-color: #f6f2e6;
+    padding: 40px;
+    border: 1px solid #ccc;
+    margin: auto; /* Center the box horizontally */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 500px; /* Fixed width */
+    min-height: 200px; /* Minimum height */
+    display: flex; /* Changed from inline-block to flex */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center children vertically */
+    align-items: center; /* Center children horizontally */
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Ensures that the form element fills its container */
+}
+
+.register-form .form-control {
+    box-sizing: border-box;
+    width: 100%; /* This will make the input fields as wide as their parent container */
+    max-width: none; /* This ensures that no maximum width is restricting the field width */
+    margin-bottom: 10px; /* Keeps your existing bottom margin */
+
+}
+
+.login-link {
+    margin-top: 20px;
+}
+
+.login-link a {
+    text-decoration: none;
+    color: #007bff; /* Bootstrap primary color */
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.btn.btn-primary {
+    margin-top:15px;
+    font-size:20px;
+    border: 0px solid #000;
+    background-color: #5f9ac6;
+    color: #f6f2e6; /* black text */
+    border-radius: 0; /* sharp edges */
+    transition: background-color 0.3s, color 0.3s; /* smooth transition for hover effect */
+}
+
+.btn.btn-primary:hover {
+    background-color: #000; /* background becomes black on hover */
+    color: #fff; /* text becomes white on hover */
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+@media (min-width: 375px) and (min-height: 667px) {
+    .form-box {
+        min-width:600px;
+    }

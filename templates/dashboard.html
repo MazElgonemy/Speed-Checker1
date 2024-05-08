@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SpeedChecker</title>
+    {{ bootstrap.load_css() }}
+    {% include "navbar.html" %}
+    <link href="static/css/dashboard.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div class="dashboard-container">
+    <div class="main-box">
+        <h1><span class="highlight"> Welcome {{ current_user.name }}, </span> to your dashboard</h1>
+        <div class="container-wrapper">
+            <div class="container" id="container1">
+                <div class="sub-container" id="top-container1">
+                    <!-- Content for the top container of container1 -->
+                    <button class="btn btn-primary" id="startTestBtn">Get Speed</button>
+                </div>
+                <div class="sub-container" id="bottom-container1">
+                    <div id="result">
+                        {% if recent_speed == False: %}
+                            <p>You haven't recorded a speed yet. Click "Get Speed" to run your first test!</p>
+                        {% else: %}
+                            <p>Your most recent recorded download speed was <span class="highlight-speed">{{ recent_speed }} mbps</span></p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="container" id="container2">
+                <div class="sub-container" id="top-container2">
+                    <a href="{{ url_for('data') }}" class="btn btn-primary btn-block">Historic Data</a>
+                </div>
+                <div class=" sub-container" id="bottom-container2">
+                    <!-- Content for the bottom container of container2 -->
+                    <a href="{{ url_for('account') }}" class="btn btn-primary btn-block">Your account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+{% include "base-scripts.html" %}

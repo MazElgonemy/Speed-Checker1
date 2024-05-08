@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{ bootstrap.load_css() }}
+   {% include "navbar.html" %}
+    <link href="static/css/home-style.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/cab6524434.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>SpeedChecker</title>
+    <style>
+</style>
+
+</head>
+
+
+<body>
+
+ <div id="centered-rectangle">
+        <div id="typed-text"></div>
+        <div id="typed-text-2"></div>
+     {% if current_user.is_authenticated: %}
+         <a href="{{url_for('dashboard') }}" class="btn btn-primary btn-block">See Dashboard</a>
+     {% else: %}
+         <a href="{{url_for('register') }}" class="btn btn-primary btn-block">Get Started</a>
+     {% endif %}
+ </div>
+
+</body>
+
+    {% include "base-scripts.html"%}
+</html>
