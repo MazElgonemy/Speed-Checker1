@@ -27,7 +27,7 @@ function downloadFile(url, callback) {
     xhr.onload = function() {
         if (xhr.status === 200) {
             var endTime = performance.now();
-            var duration = (endTime - startTime) / 1000; // Duration in seconds - Should be 1000
+            var duration = (endTime - startTime) / 50; // Duration in seconds - Should be 1000
             var fileSize = xhr.getResponseHeader('Content-Length'); // Size in bytes
             callback(duration, fileSize);
         } else {
