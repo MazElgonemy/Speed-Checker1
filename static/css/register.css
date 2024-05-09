@@ -41,7 +41,8 @@ body {
     padding: 40px;
     border: 1px solid #ccc;
     margin: auto; /* Center the box horizontally */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
     width: 500px; /* Fixed width */
     min-height: 200px; /* Minimum height */
     display: flex; /* Changed from inline-block to flex */

@@ -29,7 +29,7 @@ p {
 }
 
 .dashboard-container {
-    width: 100%; /* Full width to center the box */
+    width: 65%; /* Full width to center the box */
     margin: auto;
     display: flex;
     flex-direction: column; /* Stack elements vertically */
