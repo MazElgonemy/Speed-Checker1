@@ -5,7 +5,7 @@ const typingSpeed = 100; // Speed in milliseconds
 
 // Configuration for second message
 const target2 = document.getElementById('typed-text-2');
-const message2 = 'We are here to help to you track your internet speeds.';
+const message2 = 'We are here to help you keep track of your internet speeds.';
 let index2 = 0;
 
 

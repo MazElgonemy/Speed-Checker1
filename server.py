@@ -8,6 +8,7 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Text, Float, DateTime
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -22,6 +23,9 @@ from functools import wraps
 from dotenv import load_dotenv
 
 
+class Base(DeclarativeBase):
+    pass
+
 # Below gets the API key and creates OpenAI client
 
 
@@ -34,22 +38,13 @@ client = OpenAI(
 
 matplotlib.use('Agg')
 
+# Initialise extensions
 
-# Below sets up log in manager
 
+db = SQLAlchemy(model_class=Base)
+migrate = Migrate()
+bootstrap = Bootstrap5()
 login_manager = LoginManager()
-
-# Below configures the app
-
-
-app = Flask(__name__)
-Bootstrap5(app)
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return db.get_or_404(User, user_id)
-
 
 # Below is a decorator so that only logged-out users can access certain routes
 
@@ -62,19 +57,26 @@ def login_not_required(f):
     return decorated_function
 
 
-# Below sets up the DB
+# Application factory
+def create_app():
+    app = Flask(__name__)
+    app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("SQLALCHEMY_DATABASE_URI")
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-class Base(DeclarativeBase):
-    pass
+    # Initialize extensions with app context
+    db.init_app(app)
+    migrate.init_app(app, db)
+    login_manager.init_app(app)
+    bootstrap.init_app(app)
 
+    # User loader
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
+    return app
 
-app.config['SECRET_KEY'] = os.getenv("DB_SECRET_KEY")
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("SQLALCHEMY_DATABASE_URI")
-db = SQLAlchemy(model_class=Base)
-db.init_app(app)
-
-login_manager.init_app(app)
-
+app = create_app()
 
 # Below is the AI analysis on speed data
 def complete(prompt, model="gpt-3.5-turbo", temperature=1, max_tokens=300, stop=None):
@@ -145,7 +147,7 @@ with app.app_context():
     # Adds fake records
     # for _ in range(30):
     #     new_speed = Speed(
-    #         user_id=9,
+    #         user_id=2,
     #         speed=round(random.uniform(41.20, 101.50),2),
     #         date=datetime.now() - timedelta(days=random.randint(0, 300))
     #     )
@@ -402,7 +404,6 @@ def register_success():
 
 
 # Below deletes the users account
-
 
 @app.route('/delete-account')
 @login_required

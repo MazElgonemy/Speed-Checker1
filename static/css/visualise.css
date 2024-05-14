@@ -40,10 +40,11 @@ h1 {
     padding: 40px;
     border: 1px solid #ccc;
     margin: 0 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
     min-width: 500px;
     width: 60%; /* Adjust this as necessary */
-    height: 75%;
+    height: 100%;
     display: flex; /* Use flexbox to manage containers */
     flex-direction: column; /* Arrange elements vertically */
     justify-content: flex-start; /* Align children at the top of the container */
