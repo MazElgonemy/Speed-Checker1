@@ -14,32 +14,56 @@
 <div class="data-container">
     <div class="main-box">
             <h1><span class="highlight"> Analyse </span> your data </h1>
-        <table class="container" id="container1">
-            <tr>
-                <th><h2><span class="highlight-blue"> Summary</span></h2></th>
-            </tr>
-            <tr>
-
-                {% if summary == "": %}
-                  <td><h2>{{ message }}</h2></td>
-                {% else: %}
-                <td><h2>{{ summary }}</h2></td>
-                {% endif %}
-            </tr>
-            <tr>
-              <th><h2><span class="highlight-blue"> Recommendations</span></h2></th>
-            </tr>
-            <tr>
-                 {% if recommendations == "": %}
-                  <td><h2>{{ message }}</h2></td>
-                {% else: %}
-                <td><h2>{{ recommendations }}</h2></td>
-                {% endif %}
-            </tr>
-             <tr>
-                 <td colspan="2" class="bottom-row"><a href="{{ url_for('analyse') }}" class="btn btn-primary btn-block">Go Back</a></td>
-            </tr>
-        </table>
+<table class="container" id="container1">
+    <tr>
+        <th colspan="2"><h2><span class="highlight-blue">Summary</span></h2></th>
+    </tr>
+    <tr>
+        {% if summary == "" %}
+            <td colspan="2"><h3>{{ message }}</h3></td>
+        {% else %}
+            <td colspan="2"><h3>{{ sd_summary }}</h3></td>
+        {% endif %}
+    </tr>
+    <tr>
+        {% if summary == "" %}
+            <td colspan="2"><h3>{{ message }}</h3></td>
+        {% else %}
+            <td colspan="2"><h3>{{ avg_speed_summary }}</h3></td>
+        {% endif %}
+    </tr>
+    <tr>
+        <th colspan="2"><h2><span class="highlight-blue">Recommendations</span></h2></th>
+    </tr>
+    {% if recommendations == "" %}
+        <tr>
+            <td colspan="2"><h3>{{ message }}</h3></td>
+        </tr>
+    {% else %}
+        {% for key, value in recommendations.items() %}
+         <tr>
+             <th colspan="2"><h4><span class="highlight-blue">{{ key.replace("_"," ").title() }}</span></h4></th>
+         </tr>
+            {% if value is mapping %}
+                   {% for sub_key, sub_value in value.items() %}
+                <tr>
+                    <td><h5><strong>{{ sub_key.replace("_", " ").title() }}:</strong></h5></td>
+                    <td><h5> {{ sub_value }}</h5></td>
+                </tr>
+                  {% endfor %}
+            {% else %}
+                 <tr>
+                     <td colspan="2"><h3>{{ value }}</h3></td>
+                 </tr>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    <tr>
+        <td colspan="2" class="bottom-row">
+            <a href="{{ url_for('analyse') }}" class="btn btn-primary btn-block">Go Back</a>
+        </td>
+    </tr>
+</table>
     </div>
 
 

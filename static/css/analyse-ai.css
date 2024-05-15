@@ -20,8 +20,29 @@ h1 {
 
 h2 {
     padding: 10px;
-    font-size: 22px;
+    font-size: 25px;
     line-height: 1.4;
+}
+
+h3 {
+    padding: 10px;
+    font-size: 19px;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+h4 {
+    padding: 10px;
+    font-size: 22px;
+    font-weight:bold;
+    line-height: 1.4;
+    text-align:left;
+}
+
+h5 {
+    padding: 10px;
+    font-size: 19px;
+    line-height: 1.7;
 }
 
 .highlight {
@@ -55,7 +76,7 @@ h2 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     min-width: 500px;
-    width: 60%; /* Adjust this as necessary */
+    width: 75%; /* Adjust this as necessary */
     height: 60%;
     display: flex; /* Use flexbox to manage containers */
     flex-direction: column; /* Arrange elements vertically */
@@ -73,7 +94,7 @@ h2 {
     align-items: center; /* Horizontally center content */
     border: 5px solid #5f9ac6;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    padding: 36px;
+    padding: 70px;
     text-align: center;
 }
 
@@ -95,17 +116,20 @@ h2 {
 
 .container table {
     border-collapse: collapse; /* Collapse borders into a single border */
-    width: 100%; /* Make the table fill its container */
+    width: 60%; /* Make the table fill its container */
 }
 
 .container td {
     border: none;
 }
 
+
 @media (max-width: 700px) {
     .data-container h2 {
         font-size: 20px;
     }
+
+
 }
 
 @media (max-width: 600px) {

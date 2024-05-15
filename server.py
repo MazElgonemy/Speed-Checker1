@@ -31,6 +31,7 @@ class Base(DeclarativeBase):
 
 load_dotenv()
 open_ai_api_key = os.getenv("OPENAI_API_KEY")
+
 client = OpenAI(
     api_key=open_ai_api_key
 )
@@ -79,45 +80,77 @@ def create_app():
 app = create_app()
 
 # Below is the AI analysis on speed data
-def complete(prompt, model="gpt-3.5-turbo", temperature=1, max_tokens=300, stop=None):
-    chat_completion = client.chat.completions.create(
-        messages=[
-            {
-                "role": "system",
-                "content": """I have some internet speed data. 
-                I want to work out what my standard deviation indicates within the context of the range of the data. I want the response to be in a json or dictionary
-                Example prompt:
-                {"Standard Deviation": 71.60, "Range": 100}
-                Example response:
-                {"level of variability": "High",
-                "summary": "The high standard deviation relative to the range suggests that performance consistency is poor. This could lead to significant unpredictability in internet speed, affecting activities that require stable connections, such as video conferencing, streaming high-quality video, or online gaming.",
-                "recommendations": "It would be advisable to conduct a thorough assessment of the network to identify potential causes of such high variability. Checking for sources of interference, ensuring the router is optimally placed to avoid obstructions, and setting up quality of service (QoS) configurations to prioritize traffic could help reduce this variability."}
-                The level of variability should be either 'Very High', 'High', 'Moderate', 'Low', or 'Very Low'
-                """
-            },
-            {
-                "role": "user",
-                "content": json.dumps(prompt),  # Ensure the prompt is properly formatted as JSON
-            }
-        ],
-        model=model,
-        temperature=temperature,
-        max_tokens=max_tokens,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0,
-        stop=stop
+def complete(prompt, model="gpt-3.5-turbo", temperature=1, max_tokens=700, stop=None):
+    # System prompt with dictionary keys for recommendations
+    system_prompt = (
+        "I have some internet speed data. I am trying to analyze my internet download speed data. "
+        "The units are MBPs download speed. Please provide analysis in the following format:\n\n"
+        "Level of variability: (Either Very Low, Low, Moderate, High, or Very High)\n\n"
+        "Standard-Deviation-Summary: (Analysis of internet speed variability based on the standard deviation compared to the range.)\n\n"
+        "Average-Speed-Summary: (Analysis of quality of broadband based on the average download speed.)\n\n"
+        "Recommendations: (Based on the Standard-Deviation-Summary and Average-Speed-Summary provide recommendations on how to improve internet download speed and internet download speed consistency in dictionary format.)\n\n"
+        "Example prompt:\n"
+        '{"Standard Deviation": 8.1, "Range": 20, "Average Speed": 15.2}\n'
+        "Example response:\n"
+        '{\n'
+        '    "level of variability": "High",\n'
+        '    "standard-deviation-summary": "The standard deviation of your internet download speed is 8.1 MBps, which indicates a high level of variability. Standard deviation measures the spread of data points around the mean; a higher value suggests that there are significant fluctuations in your download speeds. Given the range of 20 MBps, this variability means that at times your download speeds might drop significantly below the average or rise well above it, leading to an inconsistent internet experience.",\n'
+        '    "average-speed-summary": "The average download speed of 15.2 MBps suggests that your broadband connection is relatively decent for general web browsing, streaming standard definition videos, and downloading files. However, for high-definition streaming, online gaming, or activities that require a stable and higher speed, this might not be optimal, especially considering the high variability. Modern internet usage often demands consistent and higher speeds, and your average speed indicates that while it is serviceable, it may not provide the best experience for more data-intensive tasks.",\n'
+        '    "recommendations": {\n'
+        '        "upgrade_plan": "Consider a higher-tier internet plan offering speeds in the 50-100 MBps range for a more robust performance.",\n'
+        '        "optimize_network_setup": {\n'
+        '            "router_placement": "Position your router centrally and away from obstructions.",\n'
+        '            "update_router_firmware": "Keep your router firmware updated for improved performance.",\n'
+        '            "wired_connection": "Use Ethernet cables for critical devices to reduce variability."\n'
+        '        },\n'
+        '        "check_network_congestion": {\n'
+        '            "bandwidth_management": "Limit the number of active devices during peak times.",\n'
+        '            "quality_of_service": "Enable QoS on your router to prioritize important traffic."\n'
+        '        },\n'
+        '        "isp_assistance": "Contact your ISP to check for line issues or equipment upgrades.",\n'
+        '        "consider_alternative_isps": "If current performance is consistently poor, explore other ISPs that might offer better infrastructure and reliability."\n'
+        '    }\n'
+        '}'
     )
 
-    # Check if the response is a string and convert it to a dictionary if necessary
+    # Make the API call and handle potential errors
+    try:
+        chat_completion = client.chat.completions.create(
+            messages=[
+                {
+                    "role": "system",
+                    "content": system_prompt,
+                },
+                {
+                    "role": "user",
+                    "content": json.dumps(prompt),
+                }
+            ],
+            model=model,
+            temperature=temperature,
+            max_tokens=max_tokens,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0,
+            stop=stop
+        )
 
-    response_content = chat_completion.choices[0].message.content
-    if isinstance(response_content, str):
-        response_dict = json.loads(response_content)
-    else:
-        response_dict = response_content
+        response_content = chat_completion.choices[0].message.content
 
-    return response_dict
+        print(response_content)
+        try:
+            response_dict = json.loads(response_content)
+        except json.JSONDecodeError as e:
+            print(f"JSONDecodeError: {e}")
+            return {"error": "Failed to decode JSON response from API"}
+
+        return response_dict
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return {"error": "An error occurred while calling the API"}
+
+
 
 # Below creates user and speeds tables
 
@@ -147,7 +180,7 @@ with app.app_context():
     # Adds fake records
     # for _ in range(30):
     #     new_speed = Speed(
-    #         user_id=2,
+    #         user_id=4,
     #         speed=round(random.uniform(41.20, 101.50),2),
     #         date=datetime.now() - timedelta(days=random.randint(0, 300))
     #     )
@@ -211,11 +244,12 @@ def analyse_ai():
         min_speed = round(df['Speed Values'].min(), 2)
         std = round(df['Speed Values'].std(), 2)
         range = max_speed - min_speed
-        prompt_dict = {"Standard Deviation": std, "Range": range}
+        prompt_dict = {"Standard Deviation": std, "Range": range, "Average Speed": average_speed}
         response = complete(prompt_dict)
-        summary = response["summary"]
+        sd_summary = response["standard-deviation-summary"]
+        avg_speed_summary = response["average-speed-summary"]
         recommendations = response["recommendations"]
-    return render_template("analyse-ai.html", summary=summary, recommendations=recommendations, message=message)
+    return render_template("analyse-ai.html", recommendations=recommendations,sd_summary=sd_summary, avg_speed_summary=avg_speed_summary, message=message)
 
 # Below is the data page
 
@@ -256,7 +290,6 @@ def visualise():
     if len(df) >= 20:
         df.set_index('Date', inplace=True)
         df = df.resample('2W').mean()  # '2W' denotes bi-weekly frequency
-
     plt.figure(figsize=(10, 5))
     plt.plot(df.index, df['Download Speed'], marker='o', linestyle='-', color='#5f9ac6')
     plt.title('Internet Download Speed Over Time', fontsize=15,pad=20)
