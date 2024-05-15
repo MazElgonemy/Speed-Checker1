@@ -11,7 +11,6 @@ function sendSpeedToServer(speed) {
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data);
-
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -27,7 +26,7 @@ function downloadFile(url, callback) {
     xhr.onload = function() {
         if (xhr.status === 200) {
             var endTime = performance.now();
-            var duration = (endTime - startTime) / 1000; // Duration in seconds - Should be 1000
+            var duration = (endTime - startTime) / 1000; // Duration in seconds
             var fileSize = xhr.getResponseHeader('Content-Length'); // Size in bytes
             callback(duration, fileSize);
         } else {
@@ -51,20 +50,31 @@ function calculateSpeed(duration, fileSize) {
 }
 
 document.getElementById('startTestBtn').addEventListener('click', function() {
+    var resultElement = document.getElementById('result');
+    var message = "Calculating speed";
+    var dots = "";
+    var interval;
 
-    document.getElementById('result').textContent = "Calculating speed...";
+    // Function to animate the message
+    function animateMessage() {
+        resultElement.textContent = message + dots;
+        dots = dots.length < 3 ? dots + "." : "";
+    }
 
-    // Delay the speed test by 5 seconds
-    setTimeout(function() {
-        var testFileUrl = '/static/testfile.dat?' + new Date().getTime(); // Cache-busting URL
-        downloadFile(testFileUrl, function(duration, fileSize) {
-            if (duration && fileSize) {
-                var speed = calculateSpeed(duration, fileSize);
-                document.getElementById('result').textContent = "Download speed: " + speed + " Mbps";
-                sendSpeedToServer(speed);
-            } else {
-                document.getElementById('result').textContent = "Error performing test";
-            }
-        });
-    }, 8000); // Delays by 8 seconds
+    // Start the animation
+    interval = setInterval(animateMessage, 500);
+
+    var testFileUrl = '/static/testfile.dat?' + new Date().getTime(); // Cache-busting URL
+    downloadFile(testFileUrl, function(duration, fileSize) {
+        clearInterval(interval); // Stop the animation
+        dots = ""; // Reset the dots
+
+        if (duration && fileSize) {
+            var speed = calculateSpeed(duration, fileSize);
+            resultElement.textContent = "Download speed: " + speed + " Mbps";
+            sendSpeedToServer(speed);
+        } else {
+            resultElement.textContent = "Error performing test";
+        }
+    });
 });
