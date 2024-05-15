@@ -104,6 +104,7 @@ h1 {
         width: 100%; /* Makes sure these elements stretch to full width on smaller screens */
     }
 
+
     h1 {
         font-size: 25px; /* Smaller font size for smaller screens */
     }

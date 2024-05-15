@@ -88,4 +88,11 @@ body {
     body .data-container h1 {
        font-size: 25px;
     }
+
+    .main-box {
+        margin-top:50px;
+        padding-left:100px;
+        flex-direction: column; /* Stack containers vertically on smaller screens */
+    }
+
 }

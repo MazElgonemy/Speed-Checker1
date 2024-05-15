@@ -13,69 +13,95 @@
     }
 }
 
-
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  background-image: url('../images/background.jpg');
-  background-repeat: repeat;
-  background-size: contain;
-  background-position: 0% 100%;
-  margin: 0; /* Prevents default margin issues */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../images/background.jpg');
+    background-repeat: repeat;
+    background-size: contain;
+    background-position: 0% 100%;
+    margin: 0; /* Prevents default margin issues */
+}
+
+#typed-text, #typed-text-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+    padding: 20px;
 }
 
 #typed-text {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-family: "Raleway", sans-serif;
-  font-size: 30px;
-  padding: 20px;
+    font-size: 30px;
 }
 
 #typed-text-2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-family: "Raleway", sans-serif;
-  font-size: 24px;
-  padding: 20px;
+    font-size: 24px;
 }
 
-
-
 #centered-rectangle {
-  background-color: #f6f2e6;
-  width: 80%;
-  max-width: 600px;
-  height: 60%;
-  max-height: 400px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  padding: 20px;
+    background-color: #f6f2e6;
+    width: 80%;
+    max-width: 600px;
+    height: 60%;
+    max-height: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Added position relative */
 }
 
 .btn.btn-primary {
-   /* Initially hidden */
-    display:none;
+    display: none;
     font-size: 20px;
-    width:30%; /* Adjust width as needed */
-    margin: 60px auto 0 auto; /* Vertically space out and horizontally center the button */
+    margin-top:30px;
+    width: 80%; /* Adjust width as needed for smaller screens */
+    max-width: 200px; /* Ensure it doesn't get too wide */
+    margin: 20px auto 0 auto; /* Vertically space out and horizontally center the button */
     border: 0px solid #000;
     background-color: #5f9ac6;
     color: #f6f2e6;
     border-radius: 0;
     transition: background-color 0.3s, color 0.3s;
     animation: wiggle 0.9s ease-in-out infinite; /* 0.5s wiggle for 3 cycles */
+    position: relative; /* Added position absolute */
+    bottom: 20px; /* Position it at the bottom with some padding */
 }
 
 .btn.btn-primary:hover {
     background-color: #000; /* background becomes black on hover */
     color: #fff; /* text becomes white on hover */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+    #centered-rectangle {
+        width: 90%; /* Adjust the width for smaller screens */
+        height: auto; /* Adjust the height to auto for better fit */
+    }
+
+    .btn.btn-primary {
+        font-size:15px;
+        width: 90%; /* Make the button fill most of the width of the rectangle */
+        max-width: 150px; /* Ensure it doesn't get too wide */
+        bottom: 10px; /* Adjust bottom spacing for smaller screens */
+    }
+
+    #typed-text {
+        font-size:25px;
+    }
+
+    #typed-text-2 {
+        font-size:19px;
+    }
+
 }

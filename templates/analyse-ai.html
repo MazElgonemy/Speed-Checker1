@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>SpeedChecker</title>
   {{ bootstrap.load_css() }}
@@ -19,16 +20,14 @@
         <th colspan="2"><h2><span class="highlight-blue">Summary</span></h2></th>
     </tr>
     <tr>
-        {% if summary == "" %}
+        {% if sd_summary == "" %}
             <td colspan="2"><h3>{{ message }}</h3></td>
         {% else %}
             <td colspan="2"><h3>{{ sd_summary }}</h3></td>
         {% endif %}
     </tr>
     <tr>
-        {% if summary == "" %}
-            <td colspan="2"><h3>{{ message }}</h3></td>
-        {% else %}
+        {% if sd_summary != "" %}
             <td colspan="2"><h3>{{ avg_speed_summary }}</h3></td>
         {% endif %}
     </tr>

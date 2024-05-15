@@ -234,7 +234,8 @@ def analyse_ai():
         speeds_values.append(each.speed)
     if len(speeds_values) < 5:
         message = "There is not enough speed data to analyse yet, please perform more speed tests."
-        summary = ""
+        sd_summary = ""
+        avg_speed_summary = ""
         recommendations = ""
     else:
         message = ""

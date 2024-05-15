@@ -105,6 +105,8 @@ p {
 
 @media (max-width: 1000px) {
     .main-box {
+        margin-top:220px;
+        padding-left:80px;
         flex-direction: column; /* Stack containers vertically on smaller screens */
     }
 
