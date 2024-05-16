@@ -69,7 +69,8 @@ p {
     justify-content: space-between; /* Horizontally and vertically center content */
     align-items: center; /* Horizontally center content */
     border: 5px solid #5f9ac6;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
     padding: 30px;
     text-align: center;
     font-size: 20px;
@@ -83,7 +84,8 @@ p {
     border: 0px solid #000;
     background-color: #5f9ac6;
     color: #f6f2e6;
-    border-radius: 0; /* Remove rounding for sharp edges */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
     transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
 }
 

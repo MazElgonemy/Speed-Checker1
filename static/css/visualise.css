@@ -62,6 +62,7 @@ h1 {
     border: 5px solid #5f9ac6;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
+    border-radius: 8px;
     padding: 36px;
     text-align: center;
     font-size: 18px;
@@ -79,7 +80,8 @@ h1 {
     border: 0px solid #000;
     background-color: #5f9ac6;
     color: #f6f2e6; /* Adjusted to correct syntax */
-    border-radius: 0; /* Sharp edges */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
     transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
 }
 

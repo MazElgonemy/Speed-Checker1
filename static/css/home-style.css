@@ -42,6 +42,7 @@ body {
 
 #typed-text-2 {
     font-size: 24px;
+    margin-bottom:30px;
 }
 
 #centered-rectangle {
@@ -70,7 +71,8 @@ body {
     border: 0px solid #000;
     background-color: #5f9ac6;
     color: #f6f2e6;
-    border-radius: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
     transition: background-color 0.3s, color 0.3s;
     animation: wiggle 0.9s ease-in-out infinite; /* 0.5s wiggle for 3 cycles */
     position: relative; /* Added position absolute */
