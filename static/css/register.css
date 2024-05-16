@@ -11,7 +11,7 @@ body {
     background-position: 0% 100%;
 
     h1 {
-    font-size:30px;
+    font-size:26px;
     margin-bottom:40px;
     }
 
@@ -82,7 +82,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     margin-top:15px;
-    font-size:20px;
+    font-size:17px;
     border: 0px solid #000;
     background-color: #5f9ac6;
     color: #f6f2e6; /* black text */

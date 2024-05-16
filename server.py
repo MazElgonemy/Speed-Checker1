@@ -450,6 +450,20 @@ def delete_account():
     return render_template("delete-account-success.html")
 
 
+# Privacy policy
+
+@app.route('/privacy-policy')
+def privacy_policy():
+    return render_template("privacy-policy.html")
+
+
+# Cookie policy
+
+@app.route('/cookie-policy')
+def cookie_policy():
+    return render_template("cookie-policy.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=5002)
 

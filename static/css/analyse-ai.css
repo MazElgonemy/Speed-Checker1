@@ -13,7 +13,7 @@ body {
 
 h1 {
     color: black;
-    font-size: 30px;
+    font-size: 26px;
     margin-top: 30px;
     margin-bottom: 30px;
 }
@@ -105,7 +105,7 @@ h5 {
 }
 
 .btn.btn-primary {
-    font-size: 20px;
+    font-size: 17px;
     width: 100%;
     margin-top: 30px; /* Remove the margin to reduce space */
     border: 0px solid #000;

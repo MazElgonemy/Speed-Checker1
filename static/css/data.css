@@ -63,7 +63,7 @@ body {
 }
 
 .btn.btn-primary {
-    font-size: 20px;
+    font-size: 17px;
     width: 100%;
     margin-top: 30px;
     background-color: #5f9ac6;
@@ -83,7 +83,7 @@ body {
     padding-top: 0;
     margin-bottom: 30px;
     text-align: center;
-    font-size:30px;
+    font-size:26px;
 }
 
 @media (max-width: 600px) {
