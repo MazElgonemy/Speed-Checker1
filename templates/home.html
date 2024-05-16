@@ -15,15 +15,16 @@
 
 
 <body>
-
- <div id="centered-rectangle">
-        <div id="typed-text"></div>
-        <div id="typed-text-2"></div>
-     {% if current_user.is_authenticated: %}
-         <a href="{{url_for('dashboard') }}" class="btn btn-primary btn-block">See Dashboard</a>
-     {% else: %}
-         <a href="{{url_for('register') }}" class="btn btn-primary btn-block">Get Started</a>
-     {% endif %}
+ <div id="main-content">
+         <div id="centered-rectangle">
+                <div id="typed-text"></div>
+                <div id="typed-text-2"></div>
+             {% if current_user.is_authenticated: %}
+                 <a href="{{url_for('dashboard') }}" class="btn btn-primary btn-block">See Dashboard</a>
+             {% else: %}
+                 <a href="{{url_for('register') }}" class="btn btn-primary btn-block">Get Started</a>
+             {% endif %}
+         </div>
  </div>
  {% include "footer.html"%}
 </body>
