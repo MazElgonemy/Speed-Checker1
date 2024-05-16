@@ -85,7 +85,7 @@ body {
 }
 
 @media (max-width: 600px) {
-    body .data-container h1 {
+    .data-container .main-box h1 {
        font-size: 25px;
     }
 
@@ -93,6 +93,11 @@ body {
         margin-top:50px;
         padding-left:100px;
         flex-direction: column; /* Stack containers vertically on smaller screens */
+    }
+
+
+     .btn.btn-primary {
+    font-size:17px;
     }
 
 }

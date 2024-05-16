@@ -123,11 +123,15 @@ h2 {
     }
 
     body .data-container h2 {
-        font-size: 20px;
+        font-size: 17px;
     }
 
     .main-box {
-
         padding-left:100px;
     }
+
+    .btn.btn-primary {
+    font-size:17px;
+    }
+
 }

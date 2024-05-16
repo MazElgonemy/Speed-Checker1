@@ -98,7 +98,17 @@ body {
     width: 100%;
 }
 
-@media (min-width: 375px) and (min-height: 667px) {
+
+@media (max-width: 600px) {
     .form-box {
         min-width:600px;
     }
+
+    .btn.btn-primary {
+    font-size:17px;
+    }
+
+    body h1 {
+        font-size: 25px; /* Smaller font size for smaller screens */
+    }
+}

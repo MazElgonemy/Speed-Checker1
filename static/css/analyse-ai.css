@@ -145,4 +145,8 @@ h5 {
     .main-box {
         padding-left:100px;
     }
+
+    .btn.btn-primary {
+    font-size:17px;
+    }
 }

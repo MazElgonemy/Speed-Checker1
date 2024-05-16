@@ -103,4 +103,10 @@ h1 {
         max-width: 100%; /* Ensure image doesn't overflow on small screens */
         min-width: none; /* Allow image to resize properly */
     }
+
+
+    .btn.btn-primary {
+    font-size:17px;
+    }
+
 }

@@ -108,4 +108,13 @@ h1 {
     h1 {
         font-size: 25px; /* Smaller font size for smaller screens */
     }
+
+    .btn.btn-danger {
+    font-size:17px;
+    }
+
+    .btn.btn-primary {
+    font-size:17px;
+    }
+
 }
