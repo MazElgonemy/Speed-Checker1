@@ -4,6 +4,7 @@ footer {
     text-align: center;
     width: 100%;
     margin-top:50px;
+    font-size:15px;
 }
 
 footer a {
@@ -13,5 +14,5 @@ footer a {
 }
 
 footer a:hover {
-    text-decoration: underline;
+      color: #a3bdd0;
 }

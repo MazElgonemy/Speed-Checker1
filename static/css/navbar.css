@@ -14,7 +14,7 @@
 
 .navbar-brand {
   font-family: 'Raleway', sans-serif; /* Consistent font usage */
-  font-size: 30px; /* Size that stands out */
+  font-size: 15px; /* Size that stands out */
   color: #003766; /* Dark color for contrast */
   transition: color 0.3s ease-in-out; /* Smooth transition for hover effect */
 }
@@ -29,7 +29,7 @@
 
 .nav-link {
   font-family: 'Raleway', sans-serif; /* Consistent font usage */
-  font-size: 20px; /* Readable but not too large */
+  font-size: 18px; /* Readable but not too large */
   color: #003766; /* Matching the navbar-brand color for consistency */
   transition: color 0.3s ease-in-out; /* Smooth transition for hover effect */
 }
