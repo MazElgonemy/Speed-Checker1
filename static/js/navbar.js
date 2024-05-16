@@ -6,7 +6,7 @@ window.addEventListener("scroll", function(){
    var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
    if (currentScroll > lastScrollTop){
       // scroll down
-      document.querySelector('.navbar').style.top='-60px'; //
+      document.querySelector('.navbar').style.top='-100px'; //
    } else {
       // scroll up
       document.querySelector('.navbar').style.top='0px';
