@@ -511,11 +511,6 @@ def handle_exception(e):
     return render_template('error.html', error=str(e), reload=False), 500
 
 
-@app.route("/trigger-server-error")
-def trigger_server_error():
-    raise InternalServerError("This is a simulated server error")
-
-
 if __name__ == "__main__":
     app.run(debug=True, port=5002)
 
