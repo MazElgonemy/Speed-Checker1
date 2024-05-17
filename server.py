@@ -21,6 +21,7 @@ from openai import OpenAI
 import json
 from functools import wraps
 from dotenv import load_dotenv
+from werkzeug.exceptions import HTTPException, InternalServerError
 
 
 class Base(DeclarativeBase):
@@ -462,6 +463,57 @@ def privacy_policy():
 @app.route('/cookie-policy')
 def cookie_policy():
     return render_template("cookie-policy.html")
+
+# Below handles 404 (page not found) error
+
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('error.html', error="This page has not been found. Please ensure you have entered the correct URL", reload=True, error_type="404"), 404
+
+
+# Below handles 500 (Internal server error)
+
+@app.errorhandler(500)
+def server_error(error):
+    return render_template('error.html', error="We have encountered an unexpected error. Please wait and we will attempt contact the server again", reload=True, error_type="505", attempted_url=request.path), 500
+
+
+# Below handles 403 (Forbidden error)
+
+@app.errorhandler(403)
+def no_permission(error):
+    return render_template('error.html', error="You do not have permission to access this page. Please log in and re-attempt the request", reload=True, error_type="403"), 403
+
+
+# Below handles 400 (Bad request error)
+
+@app.errorhandler(400)
+def bad_request(error):
+    return render_template('error.html', error="We have encountered an unexpected error. Please wait and we will attempt contact the server again", reload=True, error_type="505", attempted_url=request.path), 400
+
+
+# Below handles 401 (Forbidden error)
+
+@app.errorhandler(401)
+def unauthorised(error):
+    return render_template('error.html', error="You do not have permission to access this page. Please log in and re-attempt the request", reload=True, error_type="403"), 401
+
+
+# Below handles anything else
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    # Pass through HTTP errors
+    if isinstance(e, HTTPException):
+        return e
+    # Handle non-HTTP exceptions only
+    return render_template('error.html', error=str(e), reload=False), 500
+
+
+@app.route("/trigger-server-error")
+def trigger_server_error():
+    raise InternalServerError("This is a simulated server error")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    {% if reload == True and error_type == "404" %}
+         <meta http-equiv="refresh" content="5;url=/">
+    {% elif reload == True and error_type == "403" %}
+         <meta http-equiv="refresh" content="5;url=/login">
+    {% elif reload == True and error_type == "505" %}
+         <meta http-equiv="refresh" content="5;url={{ attempted_url }} ">
+    {% endif %}
+    <title>Error</title>
+    <!-- Bootstrap CSS -->
+    {{ bootstrap.load_css() }}
+        {% include "navbar.html" %}
+    <link rel="stylesheet" href="static/css/register.css">
+</head>
+<body>
+
+<div class="register-container">
+    <div class="form-box">
+        <h4> {{ error }} </h4>
+    </div>
+    <h1></h1>
+</div>
+ {% include "footer.html"%}
+</body>
+    {% include "base-scripts.html"%}
+</html>

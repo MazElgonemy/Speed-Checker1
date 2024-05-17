@@ -2,9 +2,10 @@ footer {
     background-color: #f6f2e6;
     padding: 20px;
     text-align: center;
-    width: 100%;
-    margin-top:50px;
-    font-size:15px;
+    width: 100%; /* Ensure footer takes up the full width */
+    margin-top: auto; /* Pushes footer to the bottom when necessary */
+    font-size: 15px;
+    position: relative; /* Ensure it stays in the flow of the document */
 }
 
 footer a {
@@ -14,5 +15,12 @@ footer a {
 }
 
 footer a:hover {
-      color: #a3bdd0;
+    color: #a3bdd0;
+}
+
+@media (max-width: 600px) {
+    footer {
+        padding: 10px;
+        font-size: 13px;
+    }
 }
